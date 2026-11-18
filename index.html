@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Browse the SuperBuy spreadsheet guide with real HipobuyFind listings, CNY price references, and practical checks for sizing, QC photos, and shipping.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SuperBuy spreadsheet | Product Finds & Buying Guide">
+  <meta property="og:description" content="Compare HipobuyFind listings and check sizing, seller links, QC photos, and shipping before ordering.">
+  <title>SuperBuy spreadsheet | Product Finds &amp; Buying Guide</title>
+
+  <!--
+    文件名 index.html。
+    竞品检索记录。以下网址来自本轮关键词网页检索，未验证特定地区的实时 Google 首页顺序。
+    https://superbuyspreadsheet.org/ 以大量链接和更新频率为主要卖点。
+    https://rep.tools/guides/superbuy-spreadsheet 侧重表格使用与购买检查。
+    https://sopel.fit/superbuy-spreadsheet 侧重大规模商品检索。
+    https://sheetssuperbuy.com/browse 通过细分类提供 QC 提示。
+    本页将原站商品编号、分类筛选、人民币参考价和各品类检查项放在同一屏内，
+    并用可直接抓取的 HTML 展示商品目录和购买指南。
+    商品来源 https://hipobuyfind.com/ 。价格为检索时的目录快照。
+    索引状态为尚未提交。部署到最终公开网址后，设置指向该页面的 canonical。
+    在已验证的 Google Search Console 属性中使用 URL 检查并申请编入索引，
+    在已验证的 Bing Webmaster Tools 站点中使用 URL Submission。
+    https://developers.google.com/search/docs/crawling-indexing/ask-google-to-recrawl
+    https://www.bing.com/webmasters/help/URL-Submission-62f2860b
+  -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "SuperBuy spreadsheet | Product Finds & Buying Guide",
+    "description": "An independent guide featuring HipobuyFind catalog listings and checks for seller links, sizing, quality control photos and shipping.",
+    "inLanguage": "en",
+    "isBasedOn": "https://hipobuyfind.com/"
+  }
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #14281f;
+      --muted: #46594d;
+      --paper: #f6f7ef;
+      --line: #d4ded3;
+      --green: #215640;
+      --night: #102c23;
+      --lime: #e2f999;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 1rem/1.6 "Instrument Sans", system-ui, sans-serif;
+    }
+
+    a { color: var(--green); text-underline-offset: .2em; }
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible {
+      outline: 3px solid #60833b;
+      outline-offset: 4px;
+    }
+
+    .wrap { width: min(72rem, calc(100% - 2rem)); margin-inline: auto; }
+    header { padding: 1rem 0; }
+    nav { display: flex; justify-content: center; flex-wrap: wrap; gap: .5rem 1.5rem; }
+    .hero {
+      padding: clamp(3rem, 8vw, 6.5rem) 1.25rem;
+      border-radius: 1.5rem;
+      background: radial-gradient(ellipse at top right, #356b4d, transparent 60%), var(--night);
+      color: white;
+      text-align: center;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+    h1, h2 { line-height: 1.08; letter-spacing: -.045em; }
+    h1 { font-size: clamp(2.45rem, 7vw, 5.4rem); overflow-wrap: anywhere; }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.9rem); }
+    .hero p { max-width: 36rem; margin: 1rem auto 0; color: #edf5e9; }
+    .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .75rem; margin-top: 1.75rem; }
+    .button {
+      padding: .7rem 1.2rem;
+      border: 1px solid var(--lime);
+      border-radius: 999px;
+      color: var(--night);
+      background: var(--lime);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .button.secondary { color: var(--lime); background: transparent; }
+    .button:hover { text-decoration: underline; }
+    section { padding: 2.3rem 0 0; }
+    section > h2, .intro { text-align: center; }
+    .intro { max-width: 46rem; margin: .8rem auto 1.2rem; color: var(--muted); }
+    .filters { display: flex; flex-wrap: wrap; justify-content: center; align-items: end; gap: .75rem; }
+    .filters[hidden] { display: none; }
+    label { display: grid; gap: .25rem; font-weight: 650; }
+    input, select {
+      max-width: 100%;
+      min-height: 2.75rem;
+      padding: .45rem .7rem;
+      border: 1px solid #829689;
+      border-radius: .55rem;
+      color: var(--ink);
+      background: white;
+      font: inherit;
+    }
+
+    #count { min-height: 1.6em; margin: .6rem 0; text-align: center; color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: .85rem; }
+    article {
+      display: flex;
+      flex-direction: column;
+      gap: .45rem;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: .85rem;
+      background: white;
+    }
+
+    article[hidden] { display: none; }
+    article h3 { line-height: 1.24; }
+    article a { margin-top: auto; padding-top: .35rem; }
+    .category, .check { color: var(--muted); font-size: .93rem; }
+    .price { font-weight: 750; }
+    #empty { margin-top: .75rem; text-align: center; }
+    .reading { max-width: 48rem; margin-inline: auto; }
+    ol { margin: 1rem 0 0; padding-left: 1.65rem; }
+    li + li { margin-top: .7rem; }
+    details { padding: .8rem .15rem; border-bottom: 1px solid var(--line); }
+    details:first-of-type { margin-top: .75rem; }
+    details p { margin-top: .35rem; }
+    summary { cursor: pointer; font-weight: 750; }
+    footer { padding: 2rem 0; text-align: center; color: var(--muted); font-size: .92rem; }
+  </style>
+<link rel="canonical" href="https://kakobuyfinds.github.io/omyjh/">
+</head>
+<body>
+  <header class="wrap">
+    <nav aria-label="Page sections">
+      <a href="#catalog">Product catalog</a>
+      <a href="#guide">Buying checklist</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <div class="hero">
+      <h1>SuperBuy spreadsheet</h1>
+      <p>Browse shoes, hoodies, tees, and jackets from HipobuyFind. Use the listing IDs and buying checklist to compare options before placing an agent order.</p>
+      <div class="actions">
+        <a class="button" href="https://hipobuyfind.com/">SuperBuy spreadsheet</a>
+        <a class="button secondary" href="https://hipobuyfind.com/">Buy it now</a>
+      </div>
+    </div>
+
+    <section id="catalog" aria-labelledby="catalog-title">
+      <h2 id="catalog-title">HipobuyFind product catalog</h2>
+      <p class="intro">These listings and CNY prices come from a HipobuyFind catalog snapshot. Check the source for current prices, sizes, and availability.</p>
+
+      <div class="filters" id="filters" hidden>
+        <label for="query">Search by name or item ID
+          <input id="query" type="search" placeholder="e.g. fleece or 154917" autocomplete="off">
+        </label>
+        <label for="category">Category
+          <select id="category">
+            <option value="">All categories</option>
+            <option value="shoes">Shoes</option>
+            <option value="hoodies">Hoodies &amp; sweaters</option>
+            <option value="tees">T-shirts</option>
+            <option value="jackets">Jackets</option>
+          </select>
+        </label>
+      </div>
+
+      <p id="count" role="status" hidden></p>
+      <div class="grid" id="products">
+        <article data-category="shoes">
+          <p class="category">Shoes · Item 148191</p>
+          <h3>Cream Chunky Sneakers with Wide Laces</h3>
+          <p class="price">¥350.00 CNY</p>
+          <p class="check">Check the insole length and compare the toe shape on both shoes.</p>
+          <a href="https://hipobuyfind.com/goods-148191.html">View sneaker listing</a>
+        </article>
+        <article data-category="shoes">
+          <p class="category">Shoes · Item 148188</p>
+          <h3>Black Canvas Low-Top Sneakers with Gum Sole</h3>
+          <p class="price">¥450.00 CNY</p>
+          <p class="check">Check the heel seam and confirm the size using the seller’s measurements.</p>
+          <a href="https://hipobuyfind.com/category-911-Shoes.html">Browse shoes for item 148188</a>
+        </article>
+        <article data-category="hoodies">
+          <p class="category">Hoodies &amp; sweaters · Item 154917</p>
+          <h3>Fleece-Lined Hoodie</h3>
+          <p class="price">¥170.00 CNY</p>
+          <p class="check">Compare laid-flat chest width with a hoodie you already wear.</p>
+          <a href="https://hipobuyfind.com/category-912-Hoodies%2FSweaters.html">Browse hoodies for item 154917</a>
+        </article>
+        <article data-category="hoodies">
+          <p class="category">Hoodies &amp; sweaters · Item 154916</p>
+          <h3>Crewneck Sweatshirt</h3>
+          <p class="price">¥150.00 CNY</p>
+          <p class="check">Check the sleeve length and look for close-ups of the collar and cuffs.</p>
+          <a href="https://hipobuyfind.com/category-912-Hoodies%2FSweaters.html">Browse sweaters for item 154916</a>
+        </article>
+        <article data-category="tees">
+          <p class="category">T-shirts · Item 154920</p>
+          <h3>Graphic Short-Sleeve T-Shirt</h3>
+          <p class="price">¥105.00 CNY</p>
+          <p class="check">Check print placement against the selected color and size.</p>
+          <a href="https://hipobuyfind.com/category-913-T-Shirts.html">Browse T-shirts for item 154920</a>
+        </article>
+        <article data-category="tees">
+          <p class="category">T-shirts · Item 154919</p>
+          <h3>Short-Sleeve T-Shirt</h3>
+          <p class="price">¥105.00 CNY</p>
+          <p class="check">Compare the shoulder width and body length before selecting a size.</p>
+          <a href="https://hipobuyfind.com/category-913-T-Shirts.html">Browse T-shirts for item 154919</a>
+        </article>
+        <article data-category="jackets">
+          <p class="category">Jackets · Item 154851</p>
+          <h3>Hooded Quick-Dry Jacket</h3>
+          <p class="price">¥157.14 CNY</p>
+          <p class="check">Check zipper close-ups and allow room for any layers you plan to wear.</p>
+          <a href="https://hipobuyfind.com/category-914-Jackets.html">Browse jackets for item 154851</a>
+        </article>
+        <article data-category="jackets">
+          <p class="category">Jackets · Item 152572</p>
+          <h3>Lightweight Puffer Jacket</h3>
+          <p class="price">¥268.00 CNY</p>
+          <p class="check">Ask for packed dimensions before estimating international shipping.</p>
+          <a href="https://hipobuyfind.com/category-914-Jackets.html">Browse jackets for item 152572</a>
+        </article>
+      </div>
+      <p id="empty" hidden>Try a shorter search or select all categories.</p>
+    </section>
+
+    <section class="reading" id="guide" aria-labelledby="guide-title">
+      <h2 id="guide-title">How to use a SuperBuy spreadsheet</h2>
+      <ol>
+        <li><strong>Find the original seller listing.</strong> Open HipobuyFind and match the item ID and title. If the product page supplies a seller link, open it and confirm the color and size before using it with your shopping agent.</li>
+        <li><strong>Compare measurements in centimeters.</strong> For a top, record the laid-flat chest width and body length. For shoes, look for insole length. Keep the seller’s size chart and variant name with the link.</li>
+        <li><strong>Review warehouse QC photos.</strong> If your agent supplies quality-control photos, compare the photographed item with your chosen variant. Ask for a measurement photo if fit depends on one dimension, and check return deadlines before approving shipment.</li>
+        <li><strong>Estimate landed cost.</strong> Add the item price, domestic delivery, agent fees, international shipping, and any applicable taxes or duties. Check whether the shipping line charges by actual or volumetric weight.</li>
+      </ol>
+    </section>
+
+    <section class="reading" id="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">Frequently asked questions</h2>
+      <details>
+        <summary>Where do the two main buttons go?</summary>
+        <p>Both open the HipobuyFind homepage. This independent guide uses HipobuyFind as its catalog source.</p>
+      </details>
+      <details>
+        <summary>Can I order every listed item using SuperBuy?</summary>
+        <p>Open the original seller link and check whether your agent accepts it and whether the item can ship to your destination. Availability can change between browsing and ordering.</p>
+      </details>
+      <details>
+        <summary>What should I record in my own spreadsheet?</summary>
+        <p>Save the seller URL, item ID, color, size, measurement, CNY price, date checked, estimated shipping, and any QC notes. Keep the exact variant name so you can match it to later photos.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    Independent shopping guide. Catalog source <a href="https://hipobuyfind.com/">HipobuyFind</a>.
+  </footer>
+
+  <script>
+    (() => {
+      const filters = document.getElementById("filters");
+      const query = document.getElementById("query");
+      const category = document.getElementById("category");
+      const count = document.getElementById("count");
+      const empty = document.getElementById("empty");
+      const products = Array.from(document.querySelectorAll("#products article"), card => ({
+        card,
+        category: card.dataset.category,
+        text: `${card.querySelector("h3").textContent} ${card.querySelector(".category").textContent}`.toLowerCase()
+      }));
+
+      function updateCatalog() {
+        const terms = query.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+        const selected = category.value;
+        let matches = 0;
+
+        for (const product of products) {
+          const visible = (!selected || selected === product.category)
+            && terms.every(term => product.text.includes(term));
+          product.card.hidden = !visible;
+          if (visible) matches += 1;
+        }
+
+        count.textContent = matches === 1 ? "1 listing shown" : `${matches} listings shown`;
+        empty.hidden = matches !== 0;
+      }
+
+      query.addEventListener("input", updateCatalog);
+      category.addEventListener("change", updateCatalog);
+      updateCatalog();
+      filters.hidden = false;
+      count.hidden = false;
+    })();
+  </script>
+</body>
+</html>
